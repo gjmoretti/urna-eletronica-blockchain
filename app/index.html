@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Urna Eletrônica DApp</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+</head>
+<body class="container">
+  <h1>Urna Eletrônica Blockchain</h1>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Candidato</th>
+          <th>Votos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alvaro Dias</td>
+          <td id="candidato-1"></td>
+        </tr>
+        <tr>
+          <td>Ciro Gomes</td>
+          <td id="candidato-2"></td>
+        </tr>
+        <tr>
+          <td>Flavio Rocha</td>
+          <td id="candidato-3"></td>
+        </tr>
+        <tr>
+          <td>Geraldo Alckmin</td>
+          <td id="candidato-4"></td>
+        </tr>	
+        <tr>
+          <td>Jair Bolsonaro</td>
+          <td id="candidato-5"></td>
+        </tr>	
+        <tr>
+          <td>Joao Amoedo</td>
+          <td id="candidato-6"></td>
+        </tr>
+        <tr>
+          <td>Manuela Davila</td>
+          <td id="candidato-7"></td>
+        </tr>	
+        <tr>
+          <td>Marina Silva</td>
+          <td id="candidato-8"></td>
+        </tr>			
+      </tbody>
+    </table>
+	<div id="msg"></div>
+  </div>
+  <input type="text" id="candidato" />
+  <a href="#" onclick="votoParaCandidato()" class="btn btn-primary">Votar</a>
+</body>
+<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="app.js"></script>
+</html>
