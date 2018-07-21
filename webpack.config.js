@@ -15,6 +15,15 @@ module.exports = {
   ],
   module: {
     rules: [
+			{
+				test: /\.(jpg|png)$/,
+				use: {
+					loader: "file-loader",
+					options: {
+						name: "./app/img/[hash].[ext]",
+					},
+				},
+			},
       {
        test: /\.css$/,
        use: [ 'style-loader', 'css-loader' ]
