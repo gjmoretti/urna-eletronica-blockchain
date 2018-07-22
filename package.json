@@ -2,10 +2,14 @@
   "name": "truffle-init-webpack",
   "version": "0.0.2",
   "description": "Frontend example using truffle v3",
+  "engines": {
+    "node": "8.11.1"
+  },
   "scripts": {
     "lint": "eslint ./",
     "build": "webpack",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+	"heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
   },
   "author": "Douglas von Kohorn",
   "license": "MIT",
