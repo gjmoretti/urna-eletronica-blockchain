@@ -43,6 +43,6 @@
     "webpack-dev-server": "^2.3.0"
   },
   "dependencies": {
-    "npm": "^6.1.0",
+    "npm": "^6.1.0"
   }
 }
