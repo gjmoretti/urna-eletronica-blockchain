@@ -44,6 +44,5 @@
   },
   "dependencies": {
     "npm": "^6.1.0",
-    "semantic-ui-less": "^2.3.3"
   }
 }
