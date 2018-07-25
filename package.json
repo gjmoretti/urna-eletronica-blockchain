@@ -34,7 +34,6 @@
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^2.28.0",
     "json-loader": "^0.5.4",
-    "semantic-ui": "^2.2.7",
     "style-loader": "^0.13.1",
     "truffle-contract": "^1.1.11",
     "url-loader": "^1.0.1",
