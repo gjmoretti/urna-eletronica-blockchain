@@ -9,8 +9,7 @@
     "lint": "eslint ./",
     "build": "webpack",
     "dev": "webpack-dev-server",
-	"heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
-	"postinstall": "gulp default"
+	"heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
   },
   "author": "Douglas von Kohorn",
   "license": "MIT",
