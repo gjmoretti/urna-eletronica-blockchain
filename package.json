@@ -9,7 +9,7 @@
     "lint": "eslint ./",
     "build": "webpack",
     "dev": "webpack-dev-server",
-    "start": "npm run dev"
+    "heroku-postbuild": "webpack -p"
   },
   "author": "Douglas von Kohorn",
   "license": "MIT",
