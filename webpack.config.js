@@ -34,8 +34,7 @@ module.exports = {
        test: /\.css$/,
        use: [ 'style-loader', 'css-loader' ]
       }
-    ],
-	/*
+    ],	
     loaders: [
       { test: /\.json$/, use: 'json-loader' },
       {
@@ -47,17 +46,6 @@ module.exports = {
           plugins: ['transform-runtime']
         }
       }
-    ]
-	*/
-	 loaders: [
-        {
-            test: /\.es6$/,
-            exclude: /node_modules/,
-            loader: "babel-loader",
-            query: {
-                presets: ["es2015"]
-            }
-        }
-    ]
+    ]	
   }
 }
