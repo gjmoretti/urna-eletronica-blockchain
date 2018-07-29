@@ -1,4 +1,3 @@
-import "../stylesheets/app.css";
 import { default as Web3} from 'web3';
 import { default as contract } from 'truffle-contract'
 
@@ -50,28 +49,3 @@ window.votoParaCandidato = function(nomeCandidato) {
     console.log(err);
   }
 }
-
-$( document ).ready(function() {  
-  
-  if (typeof web3 !== 'undefined') {
-    console.warn("Usando o web3, detectado a partir de uma fonte externa como o Metamask")
-    // Usando Mist/MetaMask's como provider
-    window.web3 = new Web3(web3.currentProvider);
-  } else {
-    console.warn("Web3 não detectado.");
-    // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-    // window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-  }
-
-  Voting.setProvider(web3.currentProvider);
-  // Voting.defaults({from: window.web3.eth.accounts[0],gas:6721975});
-  let nomeCandidatos = Object.keys(candidatos);
-  for (var i = 0; i < nomeCandidatos.length; i++) {
-    let name = nomeCandidatos[i];
-    Voting.deployed().then(function(contractInstance) {
-      contractInstance.totalVotosPara.call(name).then(function(v) {
-        $("#" + candidatos[name]).html(v.toString());
-      });
-    })
-  }
-});
