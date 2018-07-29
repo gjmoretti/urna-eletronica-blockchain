@@ -65,6 +65,8 @@ $( document ).ready(function() {
 
   Voting.setProvider(web3.currentProvider);
   // Voting.defaults({from: window.web3.eth.accounts[0],gas:6721975});
+  
+  /*
   let nomeCandidatos = Object.keys(candidatos);
   for (var i = 0; i < nomeCandidatos.length; i++) {
     let name = nomeCandidatos[i];
@@ -74,4 +76,5 @@ $( document ).ready(function() {
       });
     })
   }
+  */
 });
