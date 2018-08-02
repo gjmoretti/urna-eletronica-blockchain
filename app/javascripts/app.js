@@ -1,11 +1,11 @@
-import "../stylesheets/app.css";
+import '../stylesheets/app.css';
 import { default as Web3} from 'web3';
-import { default as contract } from 'truffle-contract'
+import { default as contract } from 'truffle-contract';
 
-import votacao_artefatos from '../../build/contracts/Votacao.json'
+import votacao_artefatos from '../../build/contracts/Votacao.json';
 var Voting = contract(votacao_artefatos);
 
-let candidatos = {"Alvaro Dias": "candidato-1", "Ciro Gomes": "candidato-2", "Flavio Rocha": "candidato-3", "Geraldo Alckmin": "candidato-4", "Jair Bolsonaro": "candidato-5", "Joao Amoedo": "candidato-6", "Manuela Davila": "candidato-7", "Marina Silva": "candidato-8"}
+let candidatos = {"Alvaro Dias": "candidato-1", "Ciro Gomes": "candidato-2", "Geraldo Alckmin": "candidato-4", "Jair Bolsonaro": "candidato-5", "Joao Amoedo": "candidato-6", "Manuela Davila": "candidato-7", "Marina Silva": "candidato-8", "Henrique Meirelles": "candidato-9"}
 
 $(".card").click(function(){
 	var id = $(this).attr("data-id");
