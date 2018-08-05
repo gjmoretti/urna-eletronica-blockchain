@@ -40,10 +40,6 @@ window.votoParaCandidato = function(nomeCandidato) {
     Voting.deployed().then(function(contractInstance) {
 	  contractInstance.votoParaCandidato(nomeCandidato, {gas: 140000, from: web3.eth.accounts[0]}).then(function() {		  	
 		let div_id = candidatos[nomeCandidato];
-//		return contractInstance.totalVotosPara.call(nomeCandidato).then(function(v) {
-//		  $("#" + div_id).html(v.toString());
-//		  $("#msg").html("");
-//		});
 	  });
     });
   } catch (err) {
@@ -64,17 +60,4 @@ $( document ).ready(function() {
   }
 
   Voting.setProvider(web3.currentProvider);
-  // Voting.defaults({from: window.web3.eth.accounts[0],gas:6721975});
-  
-  /*
-  let nomeCandidatos = Object.keys(candidatos);
-  for (var i = 0; i < nomeCandidatos.length; i++) {
-    let name = nomeCandidatos[i];
-    Voting.deployed().then(function(contractInstance) {
-      contractInstance.totalVotosPara.call(name).then(function(v) {
-        $("#" + candidatos[name]).html(v.toString());
-      });
-    })
-  }
-  */
 });
