@@ -2,7 +2,6 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
-// new webpack.optimize.UglifyJsPlugin({ // Can switch back to this with webpack 4
 new UglifyJsPlugin({
     sourceMap: true
 })

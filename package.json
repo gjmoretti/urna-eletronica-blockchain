@@ -1,18 +1,31 @@
 {
   "name": "truffle-init-webpack",
   "version": "0.0.2",
-  "description": "Frontend example using truffle v3",
+  "description": "Frontend using truffle",
   "engines": {
     "node": "8.11.1"
   },
   "scripts": {
-    "lint": "eslint ./",
-    "build": "webpack",
-    "dev": "webpack-dev-server",
-	"postinstall": "webpack -p"
+    "start": "webpack-dev-server",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "postinstall": "webpack -p"
   },
-  "author": "Douglas von Kohorn",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gjmoretti/urna-eletronica-blockchain.git"
+  },
+  "keywords": [
+    "Blockchain",
+    "Vote",
+    "Ethereum",
+    "truffle"
+  ],
+  "author": "",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gjmoretti/urna-eletronica-blockchain/issues"
+  },
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-cli": "^6.22.2",
@@ -34,6 +47,7 @@
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^2.28.0",
     "json-loader": "^0.5.4",
+    "serviceworker-webpack-plugin": "^1.0.0-alpha02",
     "style-loader": "^0.13.1",
     "truffle-contract": "^1.1.11",
     "url-loader": "^1.0.1",
