@@ -7,16 +7,16 @@ var Voting = contract(votacao_artefatos);
 
 let candidatos = {"Alvaro Dias": "candidato-1", "Ciro Gomes": "candidato-2", "Geraldo Alckmin": "candidato-4", "Jair Bolsonaro": "candidato-5", "Joao Amoedo": "candidato-6", "Manuela Davila": "candidato-7", "Marina Silva": "candidato-8", "Henrique Meirelles": "candidato-9"}
 
-$(".card").click(function(){
+    $(".card").click(function(){
 	var id = $(this).attr("data-id");
 	var img = $(this).find('img').attr('src');
 	var name = $(this).find('.name').html();
-	$("#modalImg").attr('src', img);
 	$("#modalName").html(name);
 	$('#voteBtn').attr("data-id", id);
 	//Open modal
-	$('.ui.basic.test.modal')
+	$('.ui.basic.first.modal')
 			.modal({
+                allowMultiple: false,
 				blurring: true,
 				closable  : true,
 				onDeny    : function(){
@@ -25,8 +25,14 @@ $(".card").click(function(){
 				onApprove : function() {
 					 console.log("Votou!");
 				}
-			}).modal('show');
-});
+			}).modal('setting', 'closable', false).modal('show');
+        
+        $('.second.modal')
+          .modal('attach events', '.first.modal #voteBtn')
+        ;
+        
+    $("#modalImg").attr('src', img);
+    }); 
 
 $("#voteBtn").click(function(){
 	var id = $(this).attr("data-id");
