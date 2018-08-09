@@ -1,27 +1,10 @@
 {
   "hosting": {
-    "public": "app",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ],
-	"headers": [
-      {
-        "source" : "/app.js",
-        "headers" : [
-          {
-            "key" : "Cache-Control",
-            "value" : "no-cache"
-          }
-        ]
-      }
-    ]	
+    ]
   }
 }
