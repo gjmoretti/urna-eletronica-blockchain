@@ -5,7 +5,7 @@ import { default as contract } from 'truffle-contract';
 import votacao_artefatos from '../../build/contracts/Votacao.json';
 var Voting = contract(votacao_artefatos);
 
-let candidatos = {"Alvaro Dias": "candidato-1", "Ciro Gomes": "candidato-2", "Geraldo Alckmin": "candidato-4", "Jair Bolsonaro": "candidato-5", "Joao Amoedo": "candidato-6", "Manuela Davila": "candidato-7", "Marina Silva": "candidato-8", "Henrique Meirelles": "candidato-9"}
+let candidatos = {"Alvaro Dias": "candidato-1", "Ciro Gomes": "candidato-2", "Geraldo Alckmin": "candidato-4", "Jair Bolsonaro": "candidato-5", "Joao Amoedo": "candidato-6", "Manuela Davila": "candidato-7", "Marina Silva": "candidato-8", "Henrique Meirelles": "candidato-9", "Fernando Haddad": "candidato-10", "Lula": "candidato-11", "Guilherme Boulos": "candidato-12", "Cabo Daciolo": "candidato-13"}
 
     $(".card").click(function(){
 	var id = $(this).attr("data-id");
@@ -41,7 +41,7 @@ $("#voteBtn").click(function(){
 
 window.votoParaCandidato = function(nomeCandidato) {
   try {
-    $("#msg").html("O seu voto foi registrado. A contagem de votos será atualizada assim que seu voto for registrado no blockchain. Por favor, aguarde.")
+    $("#msg").html("O seu voto foi registrado. A contagem de votos será atualizada assim que seu voto for registrado no blockchain.")
 
     Voting.deployed().then(function(contractInstance) {
 	  contractInstance.votoParaCandidato(nomeCandidato, {gas: 140000, from: web3.eth.accounts[0]}).then(function() {		  	
