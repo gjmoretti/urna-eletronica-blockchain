@@ -7,50 +7,76 @@ var Voting = contract(votacao_artefatos);
 
 let candidatos = {"Alvaro Dias": "candidato-1", "Ciro Gomes": "candidato-2", "Geraldo Alckmin": "candidato-4", "Jair Bolsonaro": "candidato-5", "Joao Amoedo": "candidato-6", "Manuela Davila": "candidato-7", "Marina Silva": "candidato-8", "Henrique Meirelles": "candidato-9", "Fernando Haddad": "candidato-10", "Lula": "candidato-11", "Guilherme Boulos": "candidato-12", "Cabo Daciolo": "candidato-13"}
 
-    $(".card").click(function(){
-	var id = $(this).attr("data-id");
-	var img = $(this).find('img').attr('src');
-	var name = $(this).find('.name').html();
-	$("#modalName").html(name);
-	$('#voteBtn').attr("data-id", id);
-	//Open modal
-	$('.ui.basic.first.modal')
-			.modal({
+$("#vote").click(function(){
+    location.reload();
+});
+
+$("#about").click(function(){
+    $("#main").load("about.html");
+});
+
+$(".card").click(function(){
+    var id = $(this).attr("data-id");
+    var img = $(this).find('img').attr('src');
+    var name = $(this).find('.name').html();
+    $("#modalName").html(name);
+    $('#voteBtn').attr("data-id", id);
+    //Open modal
+    $('.ui.basic.first.modal')
+            .modal({
                 allowMultiple: false,
-				blurring: true,
-				closable  : true,
-				onDeny    : function(){
-					console.log("Cancelou!");;
-				},
-				onApprove : function() {
-					 console.log("Votou!");
-				}
-			}).modal('setting', 'closable', false).modal('show');
-        
-        $('.second.modal')
-          .modal('attach events', '.first.modal #voteBtn')
-        ;
-        
-    $("#modalImg").attr('src', img);
-    }); 
+                blurring: true,
+                closable  : false,
+                onDeny    : function(){
+                    console.log("Cancelou!");;
+                },
+                onApprove : function() {
+                     console.log("Votou!");
+                }
+            }).modal('show');
+}); 
 
 $("#voteBtn").click(function(){
-	var id = $(this).attr("data-id");
-	votoParaCandidato(id);
+    if (typeof web3 !== 'undefined') {
+        var id = $(this).attr("data-id");
+        votoParaCandidato(id);
+    } else {
+        callPluginNotFound();
+    }
 });
 
 window.votoParaCandidato = function(nomeCandidato) {
   try {
-    $("#msg").html("O seu voto foi registrado. A contagem de votos será atualizada assim que seu voto for registrado no blockchain.")
-
     Voting.deployed().then(function(contractInstance) {
 	  contractInstance.votoParaCandidato(nomeCandidato, {gas: 140000, from: web3.eth.accounts[0]}).then(function() {		  	
 		let div_id = candidatos[nomeCandidato];
 	  });
     });
+      
+    callConfirmation();     
   } catch (err) {
     console.log(err);
   }
+}
+
+function callConfirmation(){
+    $('.second.modal').modal({
+                closable  : false,
+                onDeny : function(){
+                    console.log("Cancelou!");
+                    location.reload();
+                }
+            }).modal('show');
+}
+
+function callPluginNotFound(){
+    $('.third.modal').modal({
+                closable  : false,
+                onDeny : function(){
+                    console.log("Cancelou!");
+                    location.reload();
+                }
+            }).modal('show');
 }
 
 $( document ).ready(function() {  
@@ -66,4 +92,72 @@ $( document ).ready(function() {
   }
 
   Voting.setProvider(web3.currentProvider);
+});
+
+$("#result").click(function(){
+    $("#main").load("result.html");
+    var config = {
+      type: 'line',
+      data: {
+          labels: [],
+          datasets: []
+      },
+      options: {
+          responsive: true,
+          title:{
+              display:true,
+              text:'Resultado'
+          },
+          tooltips: {
+              mode: 'index',
+              intersect: false,
+          },
+          hover: {
+              mode: 'nearest',
+              intersect: true
+          },
+          scales: {
+              xAxes: [{
+                  display: true,
+                  scaleLabel: {
+                      display: true,
+                      labelString: 'Candidatos'
+                  }
+              }],
+              yAxes: [{
+                  display: true,
+                  scaleLabel: {
+                      display: false,
+                      labelString: 'Votos'
+                  }
+              }]
+          }
+      }
+  };
+  
+  Voting.setProvider(web3.currentProvider);
+  let nomeCandidatos = Object.keys(candidatos);
+  
+  for (var i = 0; i < nomeCandidatos.length; i++) {
+    let name = nomeCandidatos[i];
+    Voting.deployed().then(function(contractInstance) {
+      contractInstance.totalVotosPara.call(name).then(function(v) {
+        var colorNames = Object.keys(window.chartColors);
+            var colorName = colorNames[config.data.datasets.length % colorNames.length];
+            var newColor = window.chartColors[colorName];
+            var newDataset = {
+                label: name,
+                backgroundColor: newColor,
+                borderColor: newColor,
+                data: parseInt(v),
+                fill: false
+            };
+            config.data.datasets.push(newDataset); 
+      });
+    })
+  }  
+  
+  $("#canv").html('<br><canvas id="canvas"></canvas>');
+  var ctx = document.getElementById("canvas").getContext("2d");
+  window.myLine = new Chart(ctx, config);
 });

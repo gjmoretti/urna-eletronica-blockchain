@@ -1,2 +1,3 @@
 node_modules/
 build/
+app/javascripts/app.min.js
