@@ -34,6 +34,7 @@ $(".card").click(function(){
                      console.log("Votou!");
                 }
             }).modal('show');
+    $("#modalImg").attr('src', img);
 }); 
 
 $("#voteBtn").click(function(){
@@ -94,70 +95,59 @@ $( document ).ready(function() {
   Voting.setProvider(web3.currentProvider);
 });
 
-$("#result").click(function(){
-    $("#main").load("result.html");
-    var config = {
-      type: 'line',
-      data: {
-          labels: [],
-          datasets: []
-      },
-      options: {
-          responsive: true,
-          title:{
-              display:true,
-              text:'Resultado'
-          },
-          tooltips: {
-              mode: 'index',
-              intersect: false,
-          },
-          hover: {
-              mode: 'nearest',
-              intersect: true
-          },
-          scales: {
-              xAxes: [{
-                  display: true,
-                  scaleLabel: {
-                      display: true,
-                      labelString: 'Candidatos'
-                  }
-              }],
-              yAxes: [{
-                  display: true,
-                  scaleLabel: {
-                      display: false,
-                      labelString: 'Votos'
-                  }
-              }]
-          }
-      }
-  };
+$("#result").click(function(){  
+  $("#main").html('<br><canvas id="canvas"></canvas>');
+  var ctx = document.getElementById("canvas").getContext("2d");
+  var myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'Votos',
+            data: [],
+            backgroundColor: [],
+            borderColor: [],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+  });
   
   Voting.setProvider(web3.currentProvider);
   let nomeCandidatos = Object.keys(candidatos);
-  
+
   for (var i = 0; i < nomeCandidatos.length; i++) {
     let name = nomeCandidatos[i];
     Voting.deployed().then(function(contractInstance) {
       contractInstance.totalVotosPara.call(name).then(function(v) {
-        var colorNames = Object.keys(window.chartColors);
-            var colorName = colorNames[config.data.datasets.length % colorNames.length];
-            var newColor = window.chartColors[colorName];
-            var newDataset = {
-                label: name,
-                backgroundColor: newColor,
-                borderColor: newColor,
-                data: parseInt(v),
-                fill: false
-            };
-            config.data.datasets.push(newDataset); 
+        var newColor = getRandomColor();
+        myChart.data.labels.push(name);
+        myChart.data.datasets.forEach((dataset) => {
+            dataset.data.push(parseInt(v));
+            dataset.borderColor.push(newColor);
+            dataset.backgroundColor.push(newColor);
+        });
+        
+        myChart.update();
       });
     })
-  }  
+  } 
   
-  $("#canv").html('<br><canvas id="canvas"></canvas>');
-  var ctx = document.getElementById("canvas").getContext("2d");
-  window.myLine = new Chart(ctx, config);
 });
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
