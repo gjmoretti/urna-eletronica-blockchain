@@ -28,10 +28,8 @@ $(".card").click(function(){
                 blurring: true,
                 closable  : false,
                 onDeny    : function(){
-                    console.log("Cancelou!");;
-                },
-                onApprove : function() {
-                     console.log("Votou!");
+                    console.log("Cancelou!");
+                    location.reload();
                 }
             }).modal('show');
     $("#modalImg").attr('src', img);
@@ -51,10 +49,9 @@ window.votoParaCandidato = function(nomeCandidato) {
     Voting.deployed().then(function(contractInstance) {
 	  contractInstance.votoParaCandidato(nomeCandidato, {gas: 140000, from: web3.eth.accounts[0]}).then(function() {		  	
 		let div_id = candidatos[nomeCandidato];
+        callConfirmation(); 
 	  });
-    });
-      
-    callConfirmation();     
+    });   
   } catch (err) {
     console.log(err);
   }
