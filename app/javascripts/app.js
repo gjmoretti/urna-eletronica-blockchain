@@ -96,51 +96,54 @@ $( document ).ready(function() {
 });
 
 $("#result").click(function(){  
-  $("#main").html('<br><canvas id="canvas"></canvas>');
-  var ctx = document.getElementById("canvas").getContext("2d");
-  var myChart = new Chart(ctx, {
-    type: 'horizontalBar',
-    data: {
-        labels: [],
-        datasets: [{
-            label: 'Votos',
-            data: [],
-            backgroundColor: [],
-            borderColor: [],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-  });
-  
-  Voting.setProvider(web3.currentProvider);
-  let nomeCandidatos = Object.keys(candidatos);
+  if (typeof web3 !== 'undefined') {
+    $("#main").html('<br><canvas id="canvas"></canvas>');
+    var ctx = document.getElementById("canvas").getContext("2d");
+    var myChart = new Chart(ctx, {
+      type: 'horizontalBar',
+      data: {
+          labels: [],
+          datasets: [{
+              label: 'Votos',
+              data: [],
+              backgroundColor: [],
+              borderColor: [],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+    });
 
-  for (var i = 0; i < nomeCandidatos.length; i++) {
-    let name = nomeCandidatos[i];
-    Voting.deployed().then(function(contractInstance) {
-      contractInstance.totalVotosPara.call(name).then(function(v) {
-        var newColor = getRandomColor();
-        myChart.data.labels.push(name);
-        myChart.data.datasets.forEach((dataset) => {
-            dataset.data.push(parseInt(v));
-            dataset.borderColor.push(newColor);
-            dataset.backgroundColor.push(newColor);
+    Voting.setProvider(web3.currentProvider);
+    let nomeCandidatos = Object.keys(candidatos);
+
+    for (var i = 0; i < nomeCandidatos.length; i++) {
+      let name = nomeCandidatos[i];
+      Voting.deployed().then(function(contractInstance) {
+        contractInstance.totalVotosPara.call(name).then(function(v) {
+          var newColor = getRandomColor();
+          myChart.data.labels.push(name);
+          myChart.data.datasets.forEach((dataset) => {
+              dataset.data.push(parseInt(v));
+              dataset.borderColor.push(newColor);
+              dataset.backgroundColor.push(newColor);
+          });
+
+          myChart.update();
         });
-        
-        myChart.update();
-      });
-    })
-  } 
-  
+      })
+    } 
+  } else {
+    callPluginNotFound();
+  }
 });
 
 function getRandomColor() {
