@@ -6,258 +6,260 @@
 	<header>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
 		<style>
-			.image{
-				height: 300px;
-			}
+          .image{
+              height: 300px;
+          }
+          .text{
+            font-size: 24px;
+          }
 		</style>
 	</header>
 	<body>
 		
     <div class="ui top fixed menu">
-        <div class="item">
-            <img src="https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png">
+        <div class="item"><img src="https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"></div>
+        <a class="item disabled"><b>A primeira urna eletrônica com tecnologia blockchain no Brasil</b></a>
+        <a class="item" id="vote"><i class="list icon"></i>Urna</a>
+        <a class="item" id="result"><i class="chart line icon"></i>Resultado</a>
+        <a class="right item" id="about"><i class="info icon"></i>Sobre</a>
+    </div>
+        
+    <div id="main" class="ui container" style="padding-top:60px;"> 
+        <div class="ui centered aligned header">
+        <h1>Em quem você pretende votar para presidente?</h1>
         </div>
-        <a class="item">A primeira urna eletrônica com tecnologia blockchain no Brasil</a>
-<!--        <a class="right item">Sobre</a>-->
-    </div><br><br>
-		<div class="ui centered aligned header">
-		<h1>Em quem você pretende votar para presidente?</h1>
-		</div>
-		<div class="ui centered aligned header blue" id="msg" style="display:none">
-			<br>
-			<h2><b></b></h2>
-		</div>
-		
-    <div class="ui stackable four column grid doubling container segment row link cards" id="candidates">
 
-		<div class="column">
-            <div class="ui centered card" data-id="Alvaro Dias">
-                <div class="image dimmable">
-                    <div class="ui blue ribbon label">
-                        <i class="star icon"></i> PODEMOS
-                    </div>
-                    <div class="ui blurring inverted dimmer transition hidden">
-                        <div class="content">
-                          <div class="center">
-                            <div class="ui teal button">Add Friend</div>
-                          </div>
-                        </div>
-                    </div>
-                    <img src="https://conteudo.imguol.com.br/c/noticias/2014/09/26/o-senador-alvaro-dias-eleito-para-seu-quarto-mandato-pelo-estado-do-parana-1411760577132_300x300.jpg">
-                </div>
-                <div class="content">
-                    <a class="header name">ÁLVARO DIAS</a>
-                    <div class="meta">
-                        <span class="date">Vice: Paulo Rabello de Castro</span>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>	
-		
-		<div class="column">
-            <div class="ui centered card" data-id="Cabo Daciolo">
-                <div class="image dimmable">
-                    <div class="ui green ribbon label">
-                        <i class="star icon"></i> PATRIOTA
-                    </div>
-                    <div class="ui blurring inverted dimmer transition hidden">
-                        <div class="content">
-                          <div class="center">
-                            <div class="ui teal button">Add Friend</div>
-                          </div>
-                        </div>
-                    </div>
-                    <img src="https://chicoandrade.com.br/blog/wp-content/uploads/2018/08/images-1-300x300.jpeg">
-                </div>
-                <div class="content">
-                    <a class="header name">CABO DACIOLO</a>
-                    <div class="meta">
-                        <span class="date">Vice: Suelene Balduino Nascimento</span>
-                    </div> 
-                </div>
-            </div>
-        </div>			
-	
-        <div class="column">
-            <div class="ui centered card" data-id="Ciro Gomes">
-                <div class="image dimmable">
-                    <div class="ui red ribbon label">
-                        <i class="star icon"></i> PDT
-                    </div>
-                    <div class="ui blurring inverted dimmer transition hidden">
-                        <div class="content">
-                          <div class="center">
-                            <div class="ui teal button">Add Friend</div>
-                          </div>
-                        </div>
-                    </div>
-                    <img src="https://conteudo.imguol.com.br/c/noticias/85/2018/05/08/8mai2018---ciro-gomes-pre-candidato-do-pdt-a-presidencia-1525801394639_300x300.jpg">
-                </div>
-                <div class="content">
-                    <a class="header name">CIRO GOMES</a>
-                    <div class="meta">
-                        <span class="date">Vice: Kátia Abreu</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-		
-		<!--
-        <div class="column">
-            <div class="ui centered card" data-id="Fernando Haddad">
-                <div class="image">
-                    <div class="ui red ribbon label">
-                        <i class="star icon"></i> PT
-                    </div>
-                    <img src="https://4.bp.blogspot.com/-lzg_AydhbSA/WcnUKZvF3ZI/AAAAAAAAyd4/tXyRrYneAAUkXY80szVl1ji9XFeu1LMfwCLcBGAs/s1600/A%2BHADDAD.jpg">
-                </div>
-                <div class="content">
-                    <a class="header name">FERNANDO HADDAD</a>
-                    <div class="meta">
-                        <span class="date">Vice: Manuela d'Ávila</span>
-                    </div>
-                </div>
-            </div>
-        </div>	
-		-->		
+        <div class="ui stackable four column grid doubling segment row link cards" id="candidates">
 
-		<div class="column">
-            <div class="ui centered card" data-id="Geraldo Alckmin">
-                <div class="image dimmable">
-                    <div class="ui grey ribbon label">
-                        <i class="star icon"></i> PSDB
-                    </div>
-                    <div class="ui blurring inverted dimmer transition hidden">
-                        <div class="content">
-                          <div class="center">
-                            <div class="ui teal button">Add Friend</div>
-                          </div>
+            <div class="column">
+                <div class="ui centered card" data-id="Alvaro Dias">
+                    <div class="image dimmable">
+                        <div class="ui blue ribbon label">
+                            <i class="star icon"></i> PODEMOS
                         </div>
+                        <div class="ui blurring inverted dimmer transition hidden">
+                            <div class="content">
+                              <div class="center">
+                                <div class="ui teal button">Add Friend</div>
+                              </div>
+                            </div>
+                        </div>
+                        <img src="https://conteudo.imguol.com.br/c/noticias/2014/09/26/o-senador-alvaro-dias-eleito-para-seu-quarto-mandato-pelo-estado-do-parana-1411760577132_300x300.jpg">
                     </div>
-                    <img src="https://www.regiaohoje.com.br/arquivos/colunistas/a056466c14ae3b9f32b1787153e7bef2.jpg">
-                </div>
-                <div class="content">
-                    <a class="header name">GERALDO ALCKMIN</a>
-                    <div class="meta">
-                        <span class="date">Vice: Ana Amélia</span>
-                    </div> 
-                </div>
-            </div>
-        </div>	
+                    <div class="content">
+                        <a class="header name">ÁLVARO DIAS</a>
+                        <div class="meta">
+                            <span class="date">Vice: Paulo Rabello de Castro</span>
+                        </div>
 
-		<div class="column">
-            <div class="ui centered card" data-id="Guilherme Boulos">
-                <div class="image dimmable">
-                    <div class="ui red ribbon label">
-                        <i class="star icon"></i> PSOL
                     </div>
-                    <div class="ui blurring inverted dimmer transition hidden">
-                        <div class="content">
-                          <div class="center">
-                            <div class="ui teal button">Add Friend</div>
-                          </div>
+                </div>
+            </div>	
+
+            <div class="column">
+                <div class="ui centered card" data-id="Cabo Daciolo">
+                    <div class="image dimmable">
+                        <div class="ui green ribbon label">
+                            <i class="star icon"></i> PATRIOTA
+                        </div>
+                        <div class="ui blurring inverted dimmer transition hidden">
+                            <div class="content">
+                              <div class="center">
+                                <div class="ui teal button">Add Friend</div>
+                              </div>
+                            </div>
+                        </div>
+                        <img src="https://chicoandrade.com.br/blog/wp-content/uploads/2018/08/images-1-300x300.jpeg">
+                    </div>
+                    <div class="content">
+                        <a class="header name">CABO DACIOLO</a>
+                        <div class="meta">
+                            <span class="date">Vice: Suelene Balduino Nascimento</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>			
+
+            <div class="column">
+                <div class="ui centered card" data-id="Ciro Gomes">
+                    <div class="image dimmable">
+                        <div class="ui red ribbon label">
+                            <i class="star icon"></i> PDT
+                        </div>
+                        <div class="ui blurring inverted dimmer transition hidden">
+                            <div class="content">
+                              <div class="center">
+                                <div class="ui teal button">Add Friend</div>
+                              </div>
+                            </div>
+                        </div>
+                        <img src="https://conteudo.imguol.com.br/c/noticias/85/2018/05/08/8mai2018---ciro-gomes-pre-candidato-do-pdt-a-presidencia-1525801394639_300x300.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header name">CIRO GOMES</a>
+                        <div class="meta">
+                            <span class="date">Vice: Kátia Abreu</span>
                         </div>
                     </div>
-                    <img src="https://conteudo.imguol.com.br/c/noticias/e1/2018/03/09/5mar2018---o-coordenador-nacional-do-mtst-movimento-dos-trabalhadores-sem-teto-e-pre-candidato-a-presidencia-da-republica-guilherme-boulos-se-filia-oficialmente-ao-psol-1520650599460_300x300.jpg">
-                </div>
-                <div class="content">
-                    <a class="header name">GUILHERME BOULOS</a>
-                    <div class="meta">
-                        <span class="date">Vice: Sonia Guajajara</span>
-                    </div> 
                 </div>
             </div>
-        </div>			
-		
-        <div class="column">
-            <div class="ui centered card" data-id="Henrique Meirelles">
-                <div class="image">
-                    <div class="ui brown ribbon label">
-                        <i class="star icon"></i> MDB
+
+            <!--
+            <div class="column">
+                <div class="ui centered card" data-id="Fernando Haddad">
+                    <div class="image">
+                        <div class="ui red ribbon label">
+                            <i class="star icon"></i> PT
+                        </div>
+                        <img src="https://4.bp.blogspot.com/-lzg_AydhbSA/WcnUKZvF3ZI/AAAAAAAAyd4/tXyRrYneAAUkXY80szVl1ji9XFeu1LMfwCLcBGAs/s1600/A%2BHADDAD.jpg">
                     </div>
-                    <img src="https://redetvwebmais.com/site/wp-content/uploads/2017/06/4w.jpg">
+                    <div class="content">
+                        <a class="header name">FERNANDO HADDAD</a>
+                        <div class="meta">
+                            <span class="date">Vice: Manuela d'Ávila</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="content">
-                    <a class="header name">HENRIQUE MEIRELLES</a>
-                    <div class="meta">
-                        <span class="date">Vice: Germano Rigotto</span>
+            </div>	
+            -->		
+
+            <div class="column">
+                <div class="ui centered card" data-id="Geraldo Alckmin">
+                    <div class="image dimmable">
+                        <div class="ui grey ribbon label">
+                            <i class="star icon"></i> PSDB
+                        </div>
+                        <div class="ui blurring inverted dimmer transition hidden">
+                            <div class="content">
+                              <div class="center">
+                                <div class="ui teal button">Add Friend</div>
+                              </div>
+                            </div>
+                        </div>
+                        <img src="https://www.regiaohoje.com.br/arquivos/colunistas/a056466c14ae3b9f32b1787153e7bef2.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header name">GERALDO ALCKMIN</a>
+                        <div class="meta">
+                            <span class="date">Vice: Ana Amélia</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>	
+
+            <div class="column">
+                <div class="ui centered card" data-id="Guilherme Boulos">
+                    <div class="image dimmable">
+                        <div class="ui red ribbon label">
+                            <i class="star icon"></i> PSOL
+                        </div>
+                        <div class="ui blurring inverted dimmer transition hidden">
+                            <div class="content">
+                              <div class="center">
+                                <div class="ui teal button">Add Friend</div>
+                              </div>
+                            </div>
+                        </div>
+                        <img src="https://conteudo.imguol.com.br/c/noticias/e1/2018/03/09/5mar2018---o-coordenador-nacional-do-mtst-movimento-dos-trabalhadores-sem-teto-e-pre-candidato-a-presidencia-da-republica-guilherme-boulos-se-filia-oficialmente-ao-psol-1520650599460_300x300.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header name">GUILHERME BOULOS</a>
+                        <div class="meta">
+                            <span class="date">Vice: Sonia Guajajara</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>			
+
+            <div class="column">
+                <div class="ui centered card" data-id="Henrique Meirelles">
+                    <div class="image">
+                        <div class="ui brown ribbon label">
+                            <i class="star icon"></i> MDB
+                        </div>
+                        <img src="https://redetvwebmais.com/site/wp-content/uploads/2017/06/4w.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header name">HENRIQUE MEIRELLES</a>
+                        <div class="meta">
+                            <span class="date">Vice: Germano Rigotto</span>
+                        </div>
+                    </div>
+                </div>
+            </div>			
+
+            <div class="column">
+                <div class="ui centered card" data-id="Jair Bolsonaro">
+                    <div class="image">
+                        <div class="ui black ribbon label">
+                            <i class="star icon"></i> PSL
+                        </div>
+                        <img src="https://pernambuconoticias.com.br/wp-content/uploads/2018/02/14463217_699172423565080_3680542751573280863_n-300x300.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header name">JAIR BOLSONARO</a>
+                        <div class="meta">
+                            <span class="date">Vice: General Hamilton Mourão</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>			
-		
-        <div class="column">
-            <div class="ui centered card" data-id="Jair Bolsonaro">
-                <div class="image">
-                    <div class="ui black ribbon label">
-                        <i class="star icon"></i> PSL
+
+            <div class="column">
+                <div class="ui centered card" data-id="Joao Amoedo">
+                    <div class="image">
+                        <div class="ui orange ribbon label">
+                            <i class="star icon"></i> NOVO
+                        </div>
+                        <img src="https://paranaportal.uol.com.br/wp-content/uploads/2018/04/jo%C3%A3o-amoedo-300x300.jpg">
                     </div>
-                    <img src="https://pernambuconoticias.com.br/wp-content/uploads/2018/02/14463217_699172423565080_3680542751573280863_n-300x300.jpg">
-                </div>
-                <div class="content">
-                    <a class="header name">JAIR BOLSONARO</a>
-                    <div class="meta">
-                        <span class="date">Vice: General Hamilton Mourão</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-		
-        <div class="column">
-            <div class="ui centered card" data-id="Joao Amoedo">
-                <div class="image">
-                    <div class="ui orange ribbon label">
-                        <i class="star icon"></i> NOVO
-                    </div>
-                    <img src="https://paranaportal.uol.com.br/wp-content/uploads/2018/04/jo%C3%A3o-amoedo-300x300.jpg">
-                </div>
-                <div class="content">
-                    <a class="header name">JOÃO AMOEDO</a>
-                    <div class="meta">
-                        <span class="date">Vice: Christian Lohbauer</span>
+                    <div class="content">
+                        <a class="header name">JOÃO AMOEDO</a>
+                        <div class="meta">
+                            <span class="date">Vice: Christian Lohbauer</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-		
-        <div class="column">
-            <div class="ui centered card" data-id="Lula">
-                <div class="image">
-                    <div class="ui red ribbon label">
-                        <i class="star icon"></i> PT
+
+            <div class="column">
+                <div class="ui centered card" data-id="Lula">
+                    <div class="image">
+                        <div class="ui red ribbon label">
+                            <i class="star icon"></i> PT
+                        </div>
+                        <img src="https://especiais.gazetadopovo.com.br/eleicoes/2018/wp-content/uploads/sites/2/2017/09/lula-300x300.jpg">
                     </div>
-                    <img src="https://especiais.gazetadopovo.com.br/eleicoes/2018/wp-content/uploads/sites/2/2017/09/lula-300x300.jpg">
-                </div>
-                <div class="content">
-                    <a class="header name">LULA</a>
-                    <div class="meta">
-                        <span class="date">Vice: Manuela d'Ávila</span>
-                    </div>
-                </div>
-            </div>
-        </div>		
-		
-        <div class="column">
-            <div class="ui centered card" data-id="Marina Silva">
-                <div class="image">
-                    <div class="ui green ribbon label">
-                        <i class="star icon"></i> REDE
-                    </div>
-                    <img src="https://conteudo.imguol.com.br/c/noticias/2014/10/05/5out2014---a-candidata-do-psb-a-presidencia-da-republica-marina-silva-deu-entrevista-na-noite-desde-domingo-5-apos-a-divulgacao-do-resultado-do-primeiro-turno-das-eleicoes-marina-silva-1412557618565_300x300.jpg">
-                </div>
-                <div class="content">
-                    <a class="header name">MARINA SILVA</a>
-                    <div class="meta">
-                        <span class="date">Vice: Eduardo Jorge</span>
+                    <div class="content">
+                        <a class="header name">LULA</a>
+                        <div class="meta">
+                            <span class="date">Vice: Fernando Haddad</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>	
-		
-			<div id="msg"></div>
-			
-    </div>  
+            </div>		
+
+            <div class="column">
+                <div class="ui centered card" data-id="Marina Silva">
+                    <div class="image">
+                        <div class="ui green ribbon label">
+                            <i class="star icon"></i> REDE
+                        </div>
+                        <img src="https://conteudo.imguol.com.br/c/noticias/2014/10/05/5out2014---a-candidata-do-psb-a-presidencia-da-republica-marina-silva-deu-entrevista-na-noite-desde-domingo-5-apos-a-divulgacao-do-resultado-do-primeiro-turno-das-eleicoes-marina-silva-1412557618565_300x300.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header name">MARINA SILVA</a>
+                        <div class="meta">
+                            <span class="date">Vice: Eduardo Jorge</span>
+                        </div>
+                    </div>
+                </div>
+            </div>	
+
+                <div id="msg"></div>
+
+        </div>  
+    </div>
         
     <div class="ui basic first modal">
         <div>
@@ -292,12 +294,27 @@
           </div>
         </div>
     </div>
+        
+    <div class="ui basic third modal">
+        <div>
+           <img class="ui medium centered image" src="https://img-21.ccm2.net/bkATxBnlAFtXcytXtsFLEUcCDZ8=/640x/e9d7e27a6bfa4320857abdd49f215709/ccm-faq/false-2061132_640.png">
+        </div>
+        <div class="ui center aligned header">
+            <h1>OPS!! ERRO!!<br> Plugin Não Encontrado! Ver a Página Sobre!</h1>
+        </div>
+        <div class="actions" style="text-align:center;">
+          <div class="massive ui red basic cancel inverted button">
+            <i class="remove icon"></i>
+            Sair
+          </div>
+        </div>
+    </div>
 		
-<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
-<script src="app.js"></script>
-	
+    <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="app.js"></script>
 		
-	</body>
+</body>
 </html>
