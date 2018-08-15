@@ -36,32 +36,73 @@ $(".card").click(function(){
 }); 
 
 $("#voteBtn").click(function(){
-    if (typeof web3 !== 'undefined') {
-        var id = $(this).attr("data-id");
-        votoParaCandidato(id);
+	
+	// Check Wallet:
+    if (typeof web3 !== 'undefined') {		
+		var network = web3.version.network;
+		console.log("Network ID: " + network);
+		
+		// Check Network (1 - Main, 2 - Morden, 3 - Ropsten, 4 - Rinkeby, 42 - Kovan):
+		if (network !== '4') {
+			callNetworkNotFound();
+		}
+		else {
+			var id = $(this).attr("data-id");
+			votoParaCandidato(id);
+		}
     } else {
         callPluginNotFound();
     }
 });
 
 window.votoParaCandidato = function(nomeCandidato) {
+  var mobile = false;
+  
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+	console.log("Mobile");
+	mobile = true;
+  }
+  else {
+	console.log("PC/Laptop");
+  }  
+	
   try {
     Voting.deployed().then(function(contractInstance) {
-	  contractInstance.votoParaCandidato(nomeCandidato, {gas: 140000, from: web3.eth.accounts[0]}).then(function() {		  	
-		let div_id = candidatos[nomeCandidato];
-        callConfirmation(); 
-	  });
+	  let div_id = candidatos[nomeCandidato];
+	  
+	  if (mobile === true) {
+		// Caso o usuário esteja utilizando algum dispositivo móvel, o pop-up da Wallet não será aberto. A aplicação não deve aguardar o retorno da função: 
+		contractInstance.votoParaCandidato(nomeCandidato, {gas: 140000, from: web3.eth.accounts[0]});  
+		// O usuário deverá acessar a Wallet para enviar a transação.
+		callTransactionConfirmationPending();
+	  }
+	  else {
+		// Caso o usuário esteja utilizando um PC/Laptop, o pop-up da Wallet não será aberto e a aplicação vai aguardar o retorno da função, confirmando que a transação foi confirmada na BlockChain.
+        // Para verificar a conclusão da transação, que é uma operação Assincrona, utiliza-se uma "Promise" (function."then")		
+		contractInstance.votoParaCandidato(nomeCandidato, {gas: 140000, from: web3.eth.accounts[0]}).then(successCallback, failureCallback);
+	  }
+	  
     });   
   } catch (err) {
     console.log(err);
   }
 }
 
-function callConfirmation(){
+function successCallback(result) {
+  console.log("Transação confirmada com sucesso. Mensagem: " + result);
+  callBlockChainConfirmation();	
+}
+
+function failureCallback(error) {
+  console.log("Transação não confirmada. Mensagem de Erro: " + error);
+}
+
+
+function callBlockChainConfirmation(){
     $('.second.modal').modal({
                 closable  : false,
                 onDeny : function(){
-                    console.log("Cancelou!");
+                    console.log("Transação confirmada na BlockChain");
                     location.reload();
                 }
             }).modal('show');
@@ -71,7 +112,37 @@ function callPluginNotFound(){
     $('.third.modal').modal({
                 closable  : false,
                 onDeny : function(){
-                    console.log("Cancelou!");
+                    console.log("Web3 Provider (MetaMask) não encontrado!");
+                    location.reload();
+                }
+            }).modal('show');
+}
+
+function callNetworkNotFound(){
+    $('.fourth.modal').modal({
+                closable  : false,
+                onDeny : function(){
+                    console.log("Rede Rinkeby não identificada!");
+                    location.reload();
+                }
+            }).modal('show');
+}
+
+function callTransactionConfirmationPending(){
+    $('.fifth.modal').modal({
+                closable  : false,
+                onDeny : function(){
+                    console.log("Transação enviada para a Wallet");
+                    location.reload();
+                }
+            }).modal('show');
+}
+
+function callBlockChainError(){
+    $('.sixth.modal').modal({
+                closable  : false,
+                onDeny : function(){
+                    console.log("Transação não confirmada na BlockChain");
                     location.reload();
                 }
             }).modal('show');
