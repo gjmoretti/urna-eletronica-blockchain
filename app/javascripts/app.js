@@ -7,13 +7,26 @@ var Voting = contract(votacao_artefatos);
 
 let candidatos = {"Alvaro Dias": "candidato-1", "Ciro Gomes": "candidato-2", "Geraldo Alckmin": "candidato-4", "Jair Bolsonaro": "candidato-5", "Joao Amoedo": "candidato-6", /* "Manuela Davila": "candidato-7",*/ "Marina Silva": "candidato-8", "Henrique Meirelles": "candidato-9", /*"Fernando Haddad": "candidato-10",*/ "Lula": "candidato-11", "Guilherme Boulos": "candidato-12", "Cabo Daciolo": "candidato-13"}
 
-$("#vote").click(function(){
+$(".vote").click(function(){
     location.reload();
 });
 
-$("#about").click(function(){
+$(".about").click(function(){
     $("#main").load("about.html");
 });
+
+$('.ui.sidebar').sidebar({
+  context: $('.bottom.segment')
+}).sidebar('setting', {transition: 'overlay'})
+.sidebar('attach events', '.launch');
+
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+  $(".attached.menu").css("font-size", "1.5em");
+  $(".sidebar").css("font-size", "2em");
+  $(".desktop").hide();
+}else{
+  $(".mobile").hide();
+}
 
 $(".card").click(function(){
     var id = $(this).attr("data-id");
@@ -163,7 +176,7 @@ $( document ).ready(function() {
   Voting.setProvider(web3.currentProvider);
 });
 
-$("#result").click(function(){  
+$(".result").click(function(){  
   if (typeof web3 !== 'undefined') {
     $("#main").html('<br><canvas id="canvas"></canvas>');
     var ctx = document.getElementById("canvas").getContext("2d");

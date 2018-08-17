@@ -3,28 +3,35 @@
   <title>Urna Eletrônica BlockChain</title>
   <link rel="icon" href="https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png">
 </head>
-	<header>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
-		<style>
-          .image{
-              height: 300px;
-          }
-          .text{
-            font-size: 24px;
-          }
-		</style>
-	</header>
-	<body>
-		
-    <div class="ui top fixed menu">
-        <div class="item"><img src="https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"></div>
-        <a class="item disabled"><b>A primeira urna eletrônica com tecnologia blockchain no Brasil</b></a>
-        <a class="item" id="vote"><i class="list icon"></i>Urna</a>
-        <a class="item" id="result"><i class="chart line icon"></i>Resultado</a>
-        <a class="right item" id="about"><i class="info icon"></i>Sobre</a>
+  <header>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+      <style>
+        .image{
+            height: 300px;
+        }
+        .text{
+          font-size: 28px;
+        }
+      </style>
+  </header>
+  <body class="pusher">
+    <div class="ui top attached menu" style="margin-top: 0">
+      <a class="sidebar launch icon item mobile"><i class="content icon"></i></a>
+      <a class="item"><img src="https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"></a>
+      <a class="item disabled"><b>A primeira urna eletrônica com tecnologia blockchain no Brasil</b></a>
+      <a class="item desktop vote"><i class="address card outline icon"></i>Urna</a>
+      <a class="item desktop sidebarBtm result"><i class="chart line icon"></i>Resultado</a>
+      <a class="right desktop item about"><i class="info icon"></i>Sobre</a>
     </div>
-        
-    <div id="main" class="ui container" style="padding-top:60px;"> 
+    
+    <div class="ui bottom attached segment"> 
+      <div class="ui left vertical inverted sidebar labeled icon menu">
+        <a class="item launch vote"><i class="address card outline icon"></i>Urna</a>
+        <a class="item launch sidebarBtm result"><i class="chart line icon"></i>Resultado</a>
+        <a class="right launch item about"><i class="info icon"></i>Sobre</a>
+      </div>  
+      
+      <div id="main" class="ui container" style="padding-top:60px;"> 
         <div class="ui centered aligned header">
         <h1>Em quem você pretende votar para presidente?</h1>
         </div>
@@ -260,7 +267,7 @@
 
         </div>  
     </div>
-        
+  </div>       
     <div class="ui basic first modal">
         <div>
            <img class="ui medium centered circular image" id="modalImg">
