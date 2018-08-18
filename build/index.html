@@ -3,28 +3,35 @@
   <title>Urna Eletrônica BlockChain</title>
   <link rel="icon" href="https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png">
 </head>
-	<header>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
-		<style>
-          .image{
-              height: 300px;
-          }
-          .text{
-            font-size: 24px;
-          }
-		</style>
-	</header>
-	<body>
-		
-    <div class="ui top fixed menu">
-        <div class="item"><img src="https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"></div>
-        <a class="item disabled"><b>A primeira urna eletrônica com tecnologia blockchain no Brasil</b></a>
-        <a class="item" id="vote"><i class="list icon"></i>Urna</a>
-        <a class="item" id="result"><i class="chart line icon"></i>Resultado</a>
-        <a class="right item" id="about"><i class="info icon"></i>Sobre</a>
+  <header>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+      <style>
+        .image{
+            height: 300px;
+        }
+        .text{
+          font-size: 28px;
+        }
+      </style>
+  </header>
+  <body class="pusher">
+    <div class="ui top attached menu" style="margin-top: 0">
+      <a class="sidebar launch icon item mobile"><i class="content icon"></i></a>
+      <a class="item"><img src="https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"></a>
+      <a class="item disabled"><b>A primeira urna eletrônica com tecnologia blockchain no Brasil</b></a>
+      <a class="item desktop vote"><i class="address card outline icon"></i>Urna</a>
+      <a class="item desktop sidebarBtm result"><i class="chart line icon"></i>Resultado</a>
+      <a class="right desktop item about"><i class="info icon"></i>Sobre</a>
     </div>
-        
-    <div id="main" class="ui container" style="padding-top:60px;"> 
+    
+    <div class="ui bottom attached segment"> 
+      <div class="ui left vertical inverted sidebar labeled icon menu">
+        <a class="item launch vote"><i class="address card outline icon"></i>Urna</a>
+        <a class="item launch sidebarBtm result"><i class="chart line icon"></i>Resultado</a>
+        <a class="right launch item about"><i class="info icon"></i>Sobre</a>
+      </div>  
+      
+      <div id="main" class="ui container" style="padding-top:60px;"> 
         <div class="ui centered aligned header">
         <h1>Em quem você pretende votar para presidente?</h1>
         </div>
@@ -260,7 +267,7 @@
 
         </div>  
     </div>
-        
+  </div>       
     <div class="ui basic first modal">
         <div>
            <img class="ui medium centered circular image" id="modalImg">
@@ -315,7 +322,7 @@
            <img class="ui medium centered image" src="https://img-21.ccm2.net/bkATxBnlAFtXcytXtsFLEUcCDZ8=/640x/e9d7e27a6bfa4320857abdd49f215709/ccm-faq/false-2061132_640.png">
         </div>
         <div class="ui center aligned header">
-            <h1>Você tem que estar conectado à rede de testes Rinkeby para poder votar!</h1><br><h3>Consulte a sessão "Sobre" para mais informações.</h3>
+            <h1>Você tem que estar conectado à rede de testes Rinkeby para poder votar ou consultar os resultados da votação.</h1><br><h3>Consulte a sessão "Sobre" para mais informações.</h3>
         </div>
         <div class="actions" style="text-align:center;">
           <div class="massive ui red basic cancel inverted button">
@@ -346,6 +353,36 @@
         </div>
         <div class="ui center aligned header">
             <h1>Voto não registrado! Ocorreu algum problema com a transação na rede BlockChain.</h1><br><h3>Consulte a sessão "Sobre" para mais informações.</h3>
+        </div>
+        <div class="actions" style="text-align:center;">
+          <div class="massive ui red basic cancel inverted button">
+            <i class="remove icon"></i>
+            Sair
+          </div>
+        </div>
+    </div>	
+	
+    <div class="ui basic seventh modal">
+        <div>
+           <img class="ui medium centered image" src="https://img-21.ccm2.net/bkATxBnlAFtXcytXtsFLEUcCDZ8=/640x/e9d7e27a6bfa4320857abdd49f215709/ccm-faq/false-2061132_640.png">
+        </div>
+        <div class="ui center aligned header">
+            <h1>Ocorreu uma falha ao verificar o usuário.</h1><br><h3>Consulte a sessão "Sobre" para mais informações.</h3>
+        </div>
+        <div class="actions" style="text-align:center;">
+          <div class="massive ui red basic cancel inverted button">
+            <i class="remove icon"></i>
+            Sair
+          </div>
+        </div>
+    </div>
+
+    <div class="ui basic eighth modal">
+        <div>
+           <img class="ui medium centered image" src="https://img-21.ccm2.net/bkATxBnlAFtXcytXtsFLEUcCDZ8=/640x/e9d7e27a6bfa4320857abdd49f215709/ccm-faq/false-2061132_640.png">
+        </div>
+        <div class="ui center aligned header">
+            <h1>Nenhum usuário está conectado à MetaMask. É necessário estar logado para enviar o seu voto.</h1><br><h3>Consulte a sessão "Sobre" para mais informações.</h3>
         </div>
         <div class="actions" style="text-align:center;">
           <div class="massive ui red basic cancel inverted button">

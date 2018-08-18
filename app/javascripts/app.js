@@ -60,10 +60,19 @@ $("#voteBtn").click(function(){
 			callNetworkNotFound();
 		}
 		else {
-			var id = $(this).attr("data-id");
-			votoParaCandidato(id);
+			// Check User logged:
+			// console.log("User: " + web3.eth.accounts[0]);
+			if (web3.eth.accounts[0] == null) {
+				callNoUserLogged();	
+			}
+			else {
+				console.log("Usuário corretamente logado à MetaMask");
+				var id = $(this).attr("data-id");
+				votoParaCandidato(id);					
+			}
 		}
-    } else {
+    } 
+	else {
         callPluginNotFound();
     }
 });
@@ -97,7 +106,7 @@ window.votoParaCandidato = function(nomeCandidato) {
 	  
     });   
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -107,7 +116,7 @@ function successCallback(result) {
 }
 
 function failureCallback(error) {
-  console.log("Transação não confirmada. Mensagem de Erro: " + error);
+  console.error("Transação não confirmada. Mensagem de Erro: " + error);
 }
 
 
@@ -155,8 +164,28 @@ function callBlockChainError(){
     $('.sixth.modal').modal({
                 closable  : false,
                 onDeny : function(){
-                    console.log("Transação não confirmada na BlockChain");
+                    console.error("Transação não confirmada na BlockChain");
                     location.reload();
+                }
+            }).modal('show');
+}
+
+function callUserVerificationError(){
+    $('.seventh.modal').modal({
+                closable  : false,
+                onDeny : function(){
+					console.error("Ocorreu uma falha ao verificar o usuário.");
+                    // location.reload();
+                }
+            }).modal('show');
+}
+
+function callNoUserLogged(){
+    $('.eighth.modal').modal({
+                closable  : false,
+                onDeny : function(){
+					console.log("Usuário não conectado à MetaMask");
+                    // location.reload();
                 }
             }).modal('show');
 }
@@ -178,50 +207,62 @@ $( document ).ready(function() {
 
 $(".result").click(function(){  
   if (typeof web3 !== 'undefined') {
-    $("#main").html('<br><canvas id="canvas"></canvas>');
-    var ctx = document.getElementById("canvas").getContext("2d");
-    var myChart = new Chart(ctx, {
-      type: 'horizontalBar',
-      data: {
-          labels: [],
-          datasets: [{
-              label: 'Votos',
-              data: [],
-              backgroundColor: [],
-              borderColor: [],
-              borderWidth: 1
-          }]
-      },
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero:true
-                  }
-              }]
-          }
-      }
-    });
+	  
+	var network = web3.version.network;
+	console.log("Network ID: " + network);
+		
+	// Check Network (1 - Main, 2 - Morden, 3 - Ropsten, 4 - Rinkeby, 42 - Kovan):
+	if (network !== '4') {
+		callNetworkNotFound();
+	}
+	else {
+		
+		$("#main").html('<br><canvas id="canvas"></canvas>');
+		var ctx = document.getElementById("canvas").getContext("2d");
+		var myChart = new Chart(ctx, {
+		  type: 'horizontalBar',
+		  data: {
+			  labels: [],
+			  datasets: [{
+				  label: 'Votos',
+				  data: [],
+				  backgroundColor: [],
+				  borderColor: [],
+				  borderWidth: 1
+			  }]
+		  },
+		  options: {
+			  scales: {
+				  yAxes: [{
+					  ticks: {
+						  beginAtZero:true
+					  }
+				  }]
+			  }
+		  }
+		});
 
-    Voting.setProvider(web3.currentProvider);
-    let nomeCandidatos = Object.keys(candidatos);
+		Voting.setProvider(web3.currentProvider);
+		let nomeCandidatos = Object.keys(candidatos);
 
-    for (var i = 0; i < nomeCandidatos.length; i++) {
-      let name = nomeCandidatos[i];
-      Voting.deployed().then(function(contractInstance) {
-        contractInstance.totalVotosPara.call(name).then(function(v) {
-          var newColor = getRandomColor();
-          myChart.data.labels.push(name);
-          myChart.data.datasets.forEach((dataset) => {
-              dataset.data.push(parseInt(v));
-              dataset.borderColor.push(newColor);
-              dataset.backgroundColor.push(newColor);
-          });
+		for (var i = 0; i < nomeCandidatos.length; i++) {
+		  let name = nomeCandidatos[i];
+		  Voting.deployed().then(function(contractInstance) {
+			contractInstance.totalVotosPara.call(name).then(function(v) {
+			  var newColor = getRandomColor();
+			  myChart.data.labels.push(name);
+			  myChart.data.datasets.forEach((dataset) => {
+				  dataset.data.push(parseInt(v));
+				  dataset.borderColor.push(newColor);
+				  dataset.backgroundColor.push(newColor);
+			  });
 
-          myChart.update();
-        });
-      })
-    } 
+			  myChart.update();
+			});
+		  })
+		}
+	}
+ 
   } else {
     callPluginNotFound();
   }
