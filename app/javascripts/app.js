@@ -175,7 +175,7 @@ function callUserVerificationError(){
                 closable  : false,
                 onDeny : function(){
 					console.error("Ocorreu uma falha ao verificar o usuário.");
-                    // location.reload();
+                    location.reload();
                 }
             }).modal('show');
 }
@@ -185,7 +185,7 @@ function callNoUserLogged(){
                 closable  : false,
                 onDeny : function(){
 					console.log("Usuário não conectado à MetaMask");
-                    // location.reload();
+                    location.reload();
                 }
             }).modal('show');
 }
