@@ -5,7 +5,7 @@ import { default as contract } from 'truffle-contract';
 import votacao_artefatos from '../../build/contracts/Votacao.json';
 var Voting = contract(votacao_artefatos);
 
-let candidatos = {"Alvaro Dias": "candidato-1", "Ciro Gomes": "candidato-2", "Geraldo Alckmin": "candidato-4", "Jair Bolsonaro": "candidato-5", "Joao Amoedo": "candidato-6", /* "Manuela Davila": "candidato-7",*/ "Marina Silva": "candidato-8", "Henrique Meirelles": "candidato-9", /*"Fernando Haddad": "candidato-10", "Lula": "candidato-11", */ "Guilherme Boulos": "candidato-12", "Cabo Daciolo": "candidato-13"}
+let candidatos = {"Alvaro Dias": "candidato-1", "Ciro Gomes": "candidato-2", "Geraldo Alckmin": "candidato-4", "Jair Bolsonaro": "candidato-5", "Joao Amoedo": "candidato-6", /* "Manuela Davila": "candidato-7",*/ "Marina Silva": "candidato-8", "Henrique Meirelles": "candidato-9", "Fernando Haddad": "candidato-10", /*"Lula": "candidato-11", */ "Guilherme Boulos": "candidato-12", "Cabo Daciolo": "candidato-13"}
 
 $(".vote").click(function(){
     location.reload();
